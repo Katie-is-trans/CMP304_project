@@ -14,4 +14,6 @@ class CMP304_PROJECT_API AArenaAI1v1 : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	virtual void StartPlay() override;
+
 };
