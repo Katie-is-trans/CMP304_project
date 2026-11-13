@@ -4,7 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h" 
+#include "InputActionValue.h"
 #include "Player1_human.generated.h"
+
+
+class UInputMappingContext;
+class UInputAction;
+class UInputComponent;
+
+
+
+
 
 UCLASS()
 class CMP304_PROJECT_API APlayer1_human : public ACharacter
@@ -19,11 +31,29 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	TObjectPtr<UInputMappingContext> FirstPersonContext;
+
+
+	// Move Input Actions
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	TObjectPtr<UInputAction> MoveAction;
+
+	// Jump Input Actions
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	TObjectPtr<UInputAction> JumpAction;
+
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
+	UFUNCTION()
+	void Move(const FInputActionValue& Value);
 
 };
